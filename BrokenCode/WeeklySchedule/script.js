@@ -16,7 +16,7 @@ const yesBtn = document.getElementById('btn__yes')
 let selectedColor, active, icon, deselected
 
 taskContainer.addEventListener('click', selectTask)
-scheduleContainer.addEventListener('click', setColors)
+scheduleContainer.addEventListener('click', setSchedule)
 deselectBtn.addEventListener('click', resetTasks)
 resetBtn.addEventListener('click', openPopup)
 noBtn.addEventListener('click', closePopup)
@@ -67,7 +67,7 @@ function selectTask(e){
     }
 }
 
-function setColors(e){
+function setSchedule(e){
     if(e.target.classList.contains('task') 
         && active === true
         && deselected === false) {
@@ -119,6 +119,7 @@ function deleteTasks(){
         item.innerHTML = ''
         item.style.backgroundColor = 'white'
     })
+    resetTasks()
     closePopup()
 }
 
