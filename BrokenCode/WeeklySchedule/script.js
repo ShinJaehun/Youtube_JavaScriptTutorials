@@ -28,7 +28,7 @@ yesBtn.addEventListener('click', deleteTasks)
 
 function selectTask(e){
     resetTasks()  
-    taskColor = e.target.style.backgroundColor
+    let taskColor = e.target.style.backgroundColor
     switch(e.target.id){
         case 'break':
             activeTask(breakTask, taskColor)
@@ -61,6 +61,9 @@ function setColors(e){
     if(e.target.classList.contains('task') && active === true) {
         e.target.style.backgroundColor = selectedColor
         e.target.innerHTML = icon
+    } else if (e.target.classList.contains('fas') && active === true) {
+        e.target.parentElement.style.backgroundColor = selectedColor
+        e.target.parentElement.innerHTML = icon
     }
 }
 
