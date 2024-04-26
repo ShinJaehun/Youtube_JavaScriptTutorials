@@ -13,7 +13,7 @@ const popUp = document.querySelector('.pop-up__container')
 const noBtn = document.getElementById('btn__no')
 const yesBtn = document.getElementById('btn__yes')
 
-let selectedColor, active
+let selectedColor, active, icon, deselected
 
 taskContainer.addEventListener('click', selectTask)
 scheduleContainer.addEventListener('click', setColors)
@@ -33,38 +33,66 @@ function selectTask(e){
         case 'break':
             activeTask(breakTask, taskColor)
             icon = '<i class="fas fa-couch"></i>'
+            deselected = false
             break
         case 'gym':
             activeTask(gymTask, taskColor)
             icon = '<i class="fas fa-dumbbell"></i>'
+            deselected = false
             break
         case 'study':
             activeTask(studyTask, taskColor)
             icon = '<i class="fas fa-book"></i>'
+            deselected = false
             break
         case 'tv':
             activeTask(tvTask, taskColor)
             icon = '<i class="fas fa-tv"></i>'
+            deselected = false
             break
         case 'friends':
             activeTask(friendsTask, taskColor)
             icon = '<i class="fas fa-users"></i>'
+            deselected = false
             break
         case 'work':
             activeTask(workTask, taskColor)
             icon = '<i class="fas fa-briefcase"></i>'
+            deselected = false
+            break
+        case 'deselect':
+            resetTasks()
+            deselected = true
             break
     }
 }
 
 function setColors(e){
-    if(e.target.classList.contains('task') && active === true) {
+    if(e.target.classList.contains('task') 
+        && active === true
+        && deselected === false) {
         e.target.style.backgroundColor = selectedColor
         e.target.innerHTML = icon
-    } else if (e.target.classList.contains('fas') && active === true) {
+    } else if (e.target.classList.contains('fas')
+        && active === true
+        && deselected === false) {
         e.target.parentElement.style.backgroundColor = selectedColor
         e.target.parentElement.innerHTML = icon
+    } else if (e.target.classList.contains('task')
+        && deselected) {
+        e.target.style.backgroundColor = 'white'
+        e.target.innerHTML = ''
+    } else if (e.target.classList.contains('fas')
+        && deselected) {
+            // 헐~ 정확히 가운데를 클릭했을 때, 
+            // 그니까 아이콘을 클릭했을 때 초기화가 안되는 문제 => 이거 해결함 
+        e.target.parentElement.style.backgroundColor = 'white'
+        e.target.parentElement.innerHTML = ''
     }
+    // } else {
+    //     console.log('뭐가 문제니')
+    //     console.log(e.target, selectedColor, active, icon, deselected)
+    // }
 }
 
 function activeTask(task, color) {
