@@ -1,0 +1,179 @@
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    background: rgb(11,11,74);
+    height: 100vh;
+    width: 100vw;
+}
+#container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    color: black;
+    background-color: blue;
+    gap: 50px;
+}
+#container > .group {
+    width: 260px;
+    height: 155px;
+    background: rgb(243,240,240);
+    border-radius: 6px;
+    display: flex;
+    flex-wrap: wrap;
+}
+#container > .group > * {
+    position: relative;
+    bottom: 140px;
+}
+.group > div {
+    margin: 1px;
+}
+.group > * {
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    width: 50%;
+    grid-gap: 2rem;
+    position: relative;
+    left: 8px;
+    transform: translateY(15px);
+}
+.group > * > .seat {
+    width: 105px;
+    height: 55px;
+    background: rgb(41,41,150);
+    z-index: 50;
+    border-radius: 4px;
+}
+.group-1::before {
+    content: 'Group 3';
+}
+.group-2::before {
+    content: 'Group 4';
+}
+.group-3::before {
+    content: 'Group 2';
+}
+.group-4::before {
+    content: 'Group 5';
+}
+.group-5::before {
+    content: 'Group 1';
+}
+.group-6::before {
+    content: 'Group 6';
+}
+*::before {
+    font-family: 'Sedgwick Ave Display', cursive;
+    font-size: 25px;
+    text-align: center;
+    width: inherit;
+    height: inherit;
+}
+#button {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    left: 90%;
+    transform: translate(-50%,-50%);
+}
+#delete_button {
+    position: absolute;
+    top: 60%;
+    left: 85%;
+    padding: 15px 20px;
+}
+.seat {
+    columns: white;
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+    cursor: pointer;
+}
+.seat:hover {
+    transition: 0.45s;
+    transform: scale(1.05);
+}
+select {
+    position: absolute;
+    top: 5%;
+    right: 5%;
+    padding: 10px;
+    border-radius: 4px;
+    border: none;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
+    color: white;
+    background-color: rgb(41,41,150);
+    cursor: pointer;
+}
+select option {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
+    color: black;
+    background-color: white;
+}
+select:focus {
+    outline: none;
+    box-shadow: none;
+}
+input[type="text"] {
+    position: absolute;
+    top: 5%;
+    left: 5%;
+    padding: 10px;
+    width: 200px;
+    border-radius: 4px;
+    border: none;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
+    color: black;
+    background-color: white;
+}
+input[type="text"]::placeholder {
+    color: rgba(0,0,0,0.5);
+}
+input[type="text"]:focus {
+    outline:none;
+}
+.name_list {
+    margin-top:20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: grid;
+    grid-template-columns: auto auto;
+}
+.name_list_item {
+    margin-bottom: 2px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
+    color: white;
+    background: rgb(41,41,150);
+    padding: 10px;
+    border-radius: 4px;
+    width: 200px;
+    text-align: center;
+    position: relative;
+    bottom: 580px;
+    left: 64px;
+    list-style-type: none;
+    height: 35px;
+    transform: scale(0.7);
+}
+
+#amount_of_students {
+    color: white;
+    position: absolute;
+    top: 12%;
+    left: 11.5%;
+}
+
