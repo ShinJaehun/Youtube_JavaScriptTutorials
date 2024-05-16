@@ -5,18 +5,6 @@ let window_width=window.innerWidth
 canvas.width=window_width
 canvas.height=window_height
 canvas.style.background="#ff8"
-// context.fillRect(300, 0, 100, 200)
-// context.fillStyle="red"
-// context.fillRect(100, 500, 100, 100)
-// context.beginPath()
-// context.strokeStyle="blue"
-// context.lineWidth=20
-// context.arc(100, 100, 50, 0, Math.PI*2,false)
-// context.stroke()
-// context.closePath()
-
-let hit_counter=0
-
 
 class Circle {
     constructor(xpos,ypos,radius,color, text, speed){
@@ -46,28 +34,22 @@ class Circle {
     }
 
     update(){
-        this.text=hit_counter
-        context.clearRect(0,0,window_width,window_height)
         this.draw(context)
 
         if((this.xpos+this.radius)>window_width){
             this.dx=-this.dx
-            hit_counter++
         }
 
         if((this.xpos-this.radius)<0){
             this.dx=-this.dx
-            hit_counter++
         }
 
         if((this.ypos+this.radius)>window_height){
             this.dy=-this.dy
-            hit_counter++
         }
 
         if((this.ypos-this.radius)<0){
             this.dy=-this.dy
-            hit_counter++
         }
 
         this.xpos+=this.dx
@@ -75,31 +57,34 @@ class Circle {
     }
 }
 
-let random_x=Math.random()*window_width
-let random_y=Math.random()*window_height
+let getDistance = function(xpos1,ypos1,xpos2,ypos2){
+    let result=Math.sqrt(Math.pow(xpos2-xpos1,2)+Math.pow(ypos2-ypos1,2))
+    return result
+}
 
-let my_circle=new Circle(random_x,random_y,50,"red",hit_counter,10)
-my_circle.draw(context)
+
+// let random_x=Math.random()*window_width
+// let random_y=Math.random()*window_height
+
+let my_circle1=new Circle(500,800,50,"black","A",10)
+let my_circle2=new Circle(300,300,200,"black","B",0)
+
+my_circle1.draw(context)
+my_circle2.draw(context)
 
 let updateCircle = function(){
     requestAnimationFrame(updateCircle)
-    my_circle.update()
+    context.clearRect(0,0,window_width,window_height)
+    my_circle1.update()
+    my_circle2.update()
+
+    if(getDistance(my_circle1.xpos,my_circle1.ypos,my_circle2.xpos,my_circle2.ypos)<(my_circle2.radius+my_circle1.radius)){
+        my_circle2.color="red"
+    }else{
+        my_circle2.color="black"
+    }
 }
 
+// console.log(getDistance(my_circle1.xpos,my_circle1.ypos,my_circle2.xpos,my_circle2.ypos))
+
 updateCircle()
-
-// let circle_counter=1
-// let all_circles=[]
-// let createCircle = function(circle){
-//     circle.draw(context)
-// }
-
-// for(let i=0;i<1;i++){
-//     let random_x=Math.random()*window_width
-//     let random_y=Math.random()*window_height
-
-//     let my_circle=new Circle(random_x,random_y,50,"red",circle_counter,1)
-//     all_circles.push(my_circle)
-//     createCircle(all_circles[i])
-//     circle_counter++
-// }
